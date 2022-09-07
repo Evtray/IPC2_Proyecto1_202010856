@@ -5,6 +5,8 @@ listPatients = ListPatient()
 
 def main():
     global listPatients
+    listPatients.readFile('cells.xml') 
+    
     print("Hello World!")
     input("Press Enter to continue...")
 
@@ -13,7 +15,7 @@ def main():
         printTitle("Menu Principal")
         print("1. Añadir Pacientes")
         print("2. Analizar")
-        print("3. Analizar")
+        print("3. Generar xml")
         print("4. Salir")
         printTitle("")
         option = input("Seleccione una opción: ")

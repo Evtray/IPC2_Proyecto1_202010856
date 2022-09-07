@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pacientes>
+    <paciente>
+        <datospersonales>
+            <nombre>pac</nombre>
+            <edad>24</edad>
+        </datospersonales>
+        <periodos>24</periodos>
+        <m>10</m>
+        <resultado>Leve</resultado>
+    </paciente>
+    <paciente>
+        <datospersonales>
+            <nombre>Vegeta777</nombre>
+            <edad>33</edad>
+        </datospersonales>
+        <periodos>33</periodos>
+        <m>20</m>
+        <resultado>None</resultado>
+    </paciente>
+    <paciente>
+        <datospersonales>
+            <nombre>Auronplay</nombre>
+            <edad>33</edad>
+        </datospersonales>
+        <periodos>33</periodos>
+        <m>10</m>
+        <resultado>None</resultado>
+    </paciente>
+</pacientes>

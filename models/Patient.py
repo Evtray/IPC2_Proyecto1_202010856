@@ -1,3 +1,4 @@
+from lists.ListAnalysis import ListAnalysis
 from models.Analysis import Analysis
 
 
@@ -13,8 +14,35 @@ class Patient:
         self.index = index
     
     def analyze(self):
-        pass
+        print('Paciente: ', self.getName())
+        print('Edad: ', self.getAge())
+        print('Periodos: ', self.getPeriods())
+        print("------------------------------------------------")
+
+        listAnalysis = ListAnalysis()
+        temporal = self.cells
+        for i in range(1, self.periods+1):
+            response = temporal.analize(self.size)
+            temporal = response['cells']
+            analysis = Analysis(self.index, response['pattern'], response['cells'], i, self.size)
+            analysis.printCells()
+            listAnalysis.insert(analysis)
+            analysis.generateGraph(self.name)
+
+        if listAnalysis.analizeFirst():
+            self.setResult('Mortal')
+
+        if listAnalysis.searchPatternFirst():
+            self.setResult('Grave')
         
+        analize = listAnalysis.analize()
+        if analize['status']:
+            self.setResult(analize['response'])
+        else:
+            self.setResult('Leve')
+
+        print('Resultado: ', self.getResult())        
+
     def getName(self):
         return self.name
     
@@ -25,7 +53,7 @@ class Patient:
         return self.periods
     
     def getSize(self):
-        return self.sizeCells
+        return self.size
     
     def getCells(self):
         return self.cells
@@ -48,8 +76,8 @@ class Patient:
     def setPeriods(self, periods):
         self.periods = periods
     
-    def setSize(self, sizeCells):
-        self.sizeCells = sizeCells
+    def setSize(self, size):
+        self.size = size
     
     def setCells(self, cells):
         self.cells = cells
