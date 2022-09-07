@@ -45,7 +45,7 @@ class ListPatient:
             return False
 
     def analyzePatient(self, name):
-        sleep(2)
+        # sleep(2)
         patient = self.search(name)
         if patient != None:
             patient.analyze()
@@ -53,7 +53,7 @@ class ListPatient:
             print("Paciente no encontrado")
     
     def analyzeAll(self):
-        sleep(2)
+        # sleep(2)
         temp = self.head
         while temp != None:
             temp.dato.analyze()
@@ -62,12 +62,32 @@ class ListPatient:
     def search(self, name):
         temp = self.head
         while temp != None:
-            if temp.dato.name == name:
+            if temp.dato.name.lower() == name.lower():
                 return temp.dato
             temp = temp.next
         return None
     
-    def generateXml():
+    def generateXml(self):
         print("Generando XML...")
         sleep(2)
+        xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+        xml += '<pacientes>'
+
+        temp = self.head
+        while temp != None:
+            xml += f"""<paciente>
+                <datospersonales>
+                <nombre>{temp.dato.getName()}</nombre>
+                <edad>{temp.dato.getAge()}</edad>
+                </datospersonales>
+                <periodos>{temp.dato.getAge() }</periodos>
+                <m>{temp.dato.getSize()}</m>
+                <resultado>{temp.dato.getResult()}</resultado>
+                </paciente>"""
+            temp = temp.next
+
+        xml += '</pacientes>'
+        file = open('pacientes-salida.xml', 'w')
+        file.write(xml)
+        file.close()
         print("XML generado correctamente")
