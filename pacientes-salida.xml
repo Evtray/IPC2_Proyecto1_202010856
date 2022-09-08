@@ -7,7 +7,7 @@
         </datospersonales>
         <periodos>24</periodos>
         <m>10</m>
-        <resultado>Leve</resultado>
+        <resultado>None</resultado>
     </paciente>
     <paciente>
         <datospersonales>
@@ -26,5 +26,4 @@
         <periodos>33</periodos>
         <m>10</m>
         <resultado>None</resultado>
-    </paciente>
-</pacientes>
+    </paciente></pacientes>

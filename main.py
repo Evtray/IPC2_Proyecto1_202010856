@@ -5,8 +5,7 @@ listPatients = ListPatient()
 
 def main():
     global listPatients
-    listPatients.readFile('cells.xml') 
-    
+
     print("Hello World!")
     input("Press Enter to continue...")
 
@@ -77,8 +76,9 @@ def menuAnalizar():
         if option == "1":
             printTitle('Analizar paciente')
             name = input("Ingrese el nombre del paciente: ")
+            period = input("Ingrese número de periodos (opcional) [x - 0]:")
             printTitle('Analizando...')
-            listPatients.analyzePatient(name)
+            listPatients.analyzePatient({'name': name, 'periods': period})
 
         elif option == "2":
             printTitle('Analizando...')

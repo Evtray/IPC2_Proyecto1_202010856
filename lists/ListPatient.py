@@ -44,11 +44,11 @@ class ListPatient:
         except:
             return False
 
-    def analyzePatient(self, name):
+    def analyzePatient(self, prop):
         # sleep(2)
-        patient = self.search(name)
+        patient = self.search(prop['name'])
         if patient != None:
-            patient.analyze()
+            patient.analyze(prop['periods'])
         else:
             print("Paciente no encontrado")
     
@@ -75,15 +75,16 @@ class ListPatient:
 
         temp = self.head
         while temp != None:
-            xml += f"""<paciente>
-                <datospersonales>
-                <nombre>{temp.dato.getName()}</nombre>
-                <edad>{temp.dato.getAge()}</edad>
-                </datospersonales>
-                <periodos>{temp.dato.getAge() }</periodos>
-                <m>{temp.dato.getSize()}</m>
-                <resultado>{temp.dato.getResult()}</resultado>
-                </paciente>"""
+            xml += f"""
+    <paciente>
+        <datospersonales>
+            <nombre>{temp.dato.getName()}</nombre>
+            <edad>{temp.dato.getAge()}</edad>
+        </datospersonales>
+        <periodos>{temp.dato.getAge() }</periodos>
+        <m>{temp.dato.getSize()}</m>
+        <resultado>{temp.dato.getResult()}</resultado>
+    </paciente>"""
             temp = temp.next
 
         xml += '</pacientes>'

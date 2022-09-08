@@ -13,31 +13,33 @@ class Patient:
         self.result = None
         self.index = index
     
-    def analyze(self):
+    def analyze(self, periods = 0):
         print('Paciente: ', self.getName())
         print('Edad: ', self.getAge())
         print('Periodos: ', self.getPeriods())
         print("------------------------------------------------")
 
+        defPeriod = int(periods) if int(periods) > 1 else self.periods
+
         listAnalysis = ListAnalysis()
         temporal = self.cells
-        for i in range(1, self.periods+1):
+        for i in range(1, defPeriod + 1):
             response = temporal.analize(self.size)
             temporal = response['cells']
             analysis = Analysis(self.index, response['pattern'], response['cells'], i, self.size)
             analysis.printCells()
             listAnalysis.insert(analysis)
             analysis.generateGraph(self.name)
-
+        print(f'{1} patron despues del primero repetido')
         if listAnalysis.analizeFirst():
-            self.setResult('Mortal')
+            self.setResult('Mortal - Encontrado en patron inicial')
 
         if listAnalysis.searchPatternFirst():
-            self.setResult('Grave')
+            self.setResult('Grave - Primer patron repetido en x > 1')
         
         analize = listAnalysis.analize()
         if analize['status']:
-            self.setResult(analize['response'])
+            self.setResult(f'{analize["response"]} - Patron x > 1 repetido')	
         else:
             self.setResult('Leve')
 
